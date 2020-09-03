@@ -39,7 +39,7 @@ const ButtonVender = styled.button`
 `;
 
 const Label = styled.label`
-  color: #fff;
+  color: #2f3f9f;
   font-weight: bold;
   font-size: 18px;
   margin-right: 5px;
@@ -59,6 +59,7 @@ const InputValor = styled.input`
   margin-bottom: 10px;
   border-radius: 10px;
   border: 2px solid #2f3f9f;
+  margin-top: 10px;
 `;
 
 const baseURL =
@@ -135,44 +136,45 @@ export default class App extends Component {
         {this.state.showCar && (
           <div>
             <ButtonFilter onClick={this.changeFilter}>Filtros</ButtonFilter>
+
+            {this.state.showFilter && (
+              <>
+                <div>
+                  <Label htmlFor="valueMax">Valor Máximo:</Label>
+                  <InputValor
+                    type="number"
+                    id="valueMax"
+                    onChange={this.handleInputMax}
+                  />
+                  <Label htmlFor="valueMin">Valor Mínimo:</Label>
+                  <InputValor
+                    type="number"
+                    id="valueMin"
+                    onChange={this.handleInputMin}
+                  />
+                </div>
+
+                <select>
+                  <option>Ordenar por</option>
+                  <option>Título</option>
+                  <option>Valor da venda</option>
+                  <option>Prazo de entrega</option>
+                </select>
+              </>
+            )}
+
+            <Label htmlFor="SearchName">Buscar produto:</Label>
+            <Input
+              id="SearchName"
+              placeholder="Digite aqui para pesquisar"
+              onChange={this.handleInputSearch}
+            />
+            <Grid container>{carList}</Grid>
           </div>
         )}
 
-        {this.state.showFilter && (
-          <>
-            <div>
-              <Label htmlFor="valueMax">Valor Máximo:</Label>
-              <InputValor
-                type="number"
-                id="valueMax"
-                onChange={this.handleInputMax}
-              />
-              <Label htmlFor="valueMin">Valor Mínimo:</Label>
-              <InputValor
-                type="number"
-                id="valueMin"
-                onChange={this.handleInputMin}
-              />
-            </div>
-
-            <select>
-              <option>Ordenar por</option>
-              <option>Título</option>
-              <option>Valor da venda</option>
-              <option>Prazo de entrega</option>
-            </select>
-          </>
-        )}
-
-        <Label htmlFor="SearchName">Buscar produto:</Label>
-        <Input
-          id="SearchName"
-          placeholder="Digite aqui para pesquisar"
-          onChange={this.handleInputSearch}
-        />
         <br />
         {this.state.showCar ? "" : <SaleCar />}
-        <Grid container>{carList}</Grid>
       </>
     );
   }
