@@ -1,3 +1,8 @@
+
+
+
+import SaleCar from './components/SaleCar'
+
 import React, { Component } from "react";
 import Axios from "axios";
 import Header from "./components/Header/Header";
