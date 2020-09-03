@@ -1,13 +1,9 @@
-
-
-
-import SaleCar from './components/SaleCar'
-
 import React, { Component } from "react";
 import Axios from "axios";
 import Header from "./components/Header/Header";
 import Itens from "./components/Itens/Itens";
 import styled from "styled-components";
+import SaleCar from "./components/SaleCar";
 
 import Grid from "@material-ui/core/Grid";
 
@@ -43,7 +39,7 @@ const ButtonVender = styled.button`
 `;
 
 const Label = styled.label`
-  color: blue;
+  color: #fff;
   font-weight: bold;
   font-size: 18px;
   margin-right: 5px;
@@ -75,6 +71,7 @@ export default class App extends Component {
     carArray: [],
     showFilter: false,
     order: "",
+    showCar: true,
   };
 
   componentDidMount() {
@@ -106,6 +103,10 @@ export default class App extends Component {
     this.setState({ showFilter: !this.state.showFilter });
   };
 
+  changeShowCar = () => {
+    this.setState({ showCar: !this.state.showCar });
+  };
+
   render() {
     const carList = this.state.carArray
       .filter((item) => {
@@ -130,11 +131,12 @@ export default class App extends Component {
 
     return (
       <>
-        <Header />
-        {/* <Box className={classes.search}>
-          <TextField id="standard-basic" label="Search" /> */}
-        <ButtonFilter onClick={this.changeFilter}>Filtros</ButtonFilter>
-        {/*  </Box> */}
+        <Header showCar={this.state.showCar} changeCar={this.changeShowCar} />
+        {this.state.showCar && (
+          <div>
+            <ButtonFilter onClick={this.changeFilter}>Filtros</ButtonFilter>
+          </div>
+        )}
 
         {this.state.showFilter && (
           <>
@@ -169,14 +171,7 @@ export default class App extends Component {
           onChange={this.handleInputSearch}
         />
         <br />
-        <br />
-        {/* <ButtonVender>Vender</ButtonVender> */}
-        <br />
-        <br />
-
-        <br />
-        <br />
-        <br />
+        {this.state.showCar ? "" : <SaleCar />}
         <Grid container>{carList}</Grid>
       </>
     );
