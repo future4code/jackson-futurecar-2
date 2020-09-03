@@ -34,10 +34,14 @@ export default function Header(props) {
     <AppBar className={classes.root} position="static">
       <Toolbar className={classes.title}>
         <img src="./images/4cars.png" alt="logo" className={classes.logo} />
-        {/* <Box className={classes.search}>
-          <TextField id="standard-basic" label="Search" />
-        </Box> */}
-        <Button color="inherit">Vender</Button>
+
+        <Button
+          color="inherit"
+          showCar={props.showCar}
+          onClick={props.changeCar}
+        >
+          {props.showCar ? "Vender" : "Voltar"}
+        </Button>
       </Toolbar>
     </AppBar>
   );
