@@ -6,7 +6,6 @@ import SaleCar from "./components/SaleCar";
 
 import styled from "styled-components";
 import Grid from "@material-ui/core/Grid";
-import { Card } from "@material-ui/core";
 
 /* Estilos Botão */
 const ButtonFilter = styled.button`
