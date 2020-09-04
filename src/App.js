@@ -3,6 +3,7 @@ import Axios from "axios";
 import Header from "./components/Header/Header";
 import Itens from "./components/Itens/Itens";
 import SaleCar from "./components/SaleCar";
+import Footer from "./components/Footer/Footer";
 
 import styled from "styled-components";
 import Grid from "@material-ui/core/Grid";
@@ -55,7 +56,7 @@ const InputValor = styled.input`
 `;
 
 const Select = styled.select`
-  width: 130px;
+  width: 175px;
   padding: 5px;
   font-size: 16px;
   line-height: 1;
@@ -115,31 +116,33 @@ export default class App extends Component {
   };
 
   changeSelect = (event) => {
-    
-    const noOrder = this.carArray
+    const noOrder = this.carArray;
     let newValue = event.target.value;
 
-    switch(newValue){
+    switch (newValue) {
       case "ordemTitulo":
-        const ordemTitulo = this.state.carArray.sort((a,b) => {
-	
-          return (a.name > b.nome) ? 1 : ((b.name > a.name) ? -1 : 0);
-         
-        })
-        this.setState({carArray : ordemTitulo})
-        console.log(this.state.carArray)
-        break
+        const ordemTitulo = this.state.carArray.sort((a, b) => {
+          return a.name > b.nome ? 1 : b.name > a.name ? -1 : 0;
+        });
+        this.setState({ carArray: ordemTitulo });
+        console.log(this.state.carArray);
+        break;
       case "crescente":
-        const ordemCrescente = this.state.carArray.sort((a,b) => a.price - b.price)
-        this.setState({carArray : ordemCrescente})
-        break
+        const ordemCrescente = this.state.carArray.sort(
+          (a, b) => a.price - b.price
+        );
+        this.setState({ carArray: ordemCrescente });
+        break;
       case "decrescente":
-        const ordemDecrescente = this.state.carArray.sort((a,b) => b.price - a.price)
-        this.setState({carArray : ordemDecrescente})
-        break   
-      default: this.setState({carArray : noOrder})
+        const ordemDecrescente = this.state.carArray.sort(
+          (a, b) => b.price - a.price
+        );
+        this.setState({ carArray: ordemDecrescente });
+        break;
+      default:
+        this.setState({ carArray: noOrder });
     }
-  }
+  };
 
   render() {
     const carList = this.state.carArray
@@ -191,9 +194,9 @@ export default class App extends Component {
 
                 <Select onChange={this.changeSelect}>
                   <option>Ordenar por</option>
-                  <option  value="ordemTitulo">Título</option>
-                  <option  value="crescente" >Preço crescente</option>
-                  <option value="decrescente" >Preço decrescente</option>
+                  <option value="ordemTitulo">Título</option>
+                  <option value="crescente">Preço crescente</option>
+                  <option value="decrescente">Preço decrescente</option>
                 </Select>
               </>
             )}
@@ -209,6 +212,9 @@ export default class App extends Component {
         )}
         <br />
         {this.state.showCar ? "" : <SaleCar />}
+        <div>
+          <Footer />
+        </div>
       </>
     );
   }
