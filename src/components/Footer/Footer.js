@@ -6,7 +6,7 @@ const FooterCar = styled.div`
   background-color: #b9b9b9;
   padding: 10px;
   font-size: 18px;
-  color: #696969;
+  color: #9e9e9e;
   margin-top: 15px;
   display: flex;
   justify-content: space-around;
