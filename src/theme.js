@@ -6,7 +6,7 @@ import { grey } from "@material-ui/core/colors";
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: grey[500],
+      main: grey[400],
     },
     secondary: {
       main: green[500],
