@@ -81,11 +81,9 @@ class SaleCar extends React.Component {
   render() {
     return (
       <div>
-        <ContainerApp>
-          <Imagem src="./imagens/4cars.png" alt="logo" />
-        </ContainerApp>
         <Container>
           <h2>Cadastro de Venda</h2>
+
           <TextField
             id="filled-basic"
             label="Nome do Carro:"
