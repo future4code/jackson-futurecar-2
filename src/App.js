@@ -2,40 +2,29 @@ import React, { Component } from "react";
 import Axios from "axios";
 import Header from "./components/Header/Header";
 import Itens from "./components/Itens/Itens";
-import styled from "styled-components";
 import SaleCar from "./components/SaleCar";
 
+import styled from "styled-components";
 import Grid from "@material-ui/core/Grid";
+import { Card } from "@material-ui/core";
 
 /* Estilos Botão */
 const ButtonFilter = styled.button`
   background-color: #2f3f9f;
-  padding: 10px 20px;
+  padding: 5px 25px;
   border: none;
   color: #fff;
   font-size: 18px;
   border-radius: 7%;
   text-align: center;
   margin-top: 20px;
-  margin-right: 80px;
-  cursor: pointer;
   margin-left: 30%;
+  margin-bottom: 1%;
+  cursor: pointer;
 
   &:hover {
     background-color: #808080;
   }
-`;
-
-const ButtonVender = styled.button`
-  background-color: #2f3f9f;
-  padding: 10px 20px;
-  border: none;
-  color: #fff;
-  font-size: 18px;
-  border-radius: 7%;
-  text-align: center;
-  cursor: pointer;
-  margin-left: 90%;
 `;
 
 const Label = styled.label`
@@ -43,6 +32,7 @@ const Label = styled.label`
   font-weight: bold;
   font-size: 18px;
   margin-right: 5px;
+  margin-left: 5%;
 `;
 
 const Input = styled.input`
@@ -53,13 +43,30 @@ const Input = styled.input`
   border: 2px solid #2f3f9f;
 `;
 
+const ContainerValor = styled.label`
+  margin-left: 20%;
+`;
+
 const InputValor = styled.input`
   width: 10%;
   padding: 5px;
-  margin-bottom: 10px;
+  margin: 10px;
   border-radius: 10px;
   border: 2px solid #2f3f9f;
-  margin-top: 10px;
+`;
+
+const Select = styled.select`
+  width: 130px;
+  padding: 5px;
+  font-size: 16px;
+  line-height: 1;
+  border: 0;
+  border-radius: 0;
+  height: 34px;
+  margin-left: 25%;
+  color: #2f3f9f;
+  font-weight: bold;
+  margin-bottom: 3%;
 `;
 
 const baseURL =
@@ -140,26 +147,28 @@ export default class App extends Component {
             {this.state.showFilter && (
               <>
                 <div>
-                  <Label htmlFor="valueMax">Valor Máximo:</Label>
-                  <InputValor
-                    type="number"
-                    id="valueMax"
-                    onChange={this.handleInputMax}
-                  />
-                  <Label htmlFor="valueMin">Valor Mínimo:</Label>
-                  <InputValor
-                    type="number"
-                    id="valueMin"
-                    onChange={this.handleInputMin}
-                  />
+                  <ContainerValor>
+                    <Label htmlFor="valueMax">Valor Máximo:</Label>
+                    <InputValor
+                      type="number"
+                      id="valueMax"
+                      onChange={this.handleInputMax}
+                    />
+                    <Label htmlFor="valueMin">Valor Mínimo:</Label>
+                    <InputValor
+                      type="number"
+                      id="valueMin"
+                      onChange={this.handleInputMin}
+                    />
+                  </ContainerValor>
                 </div>
 
-                <select>
+                <Select>
                   <option>Ordenar por</option>
                   <option>Título</option>
                   <option>Valor da venda</option>
                   <option>Prazo de entrega</option>
-                </select>
+                </Select>
               </>
             )}
 
@@ -172,7 +181,6 @@ export default class App extends Component {
             <Grid container>{carList}</Grid>
           </div>
         )}
-
         <br />
         {this.state.showCar ? "" : <SaleCar />}
       </>

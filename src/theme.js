@@ -10,9 +10,10 @@ const theme = createMuiTheme({
     },
     secondary: {
       main: green[500],
+      light: "#0066ff",
     },
     background: {
-      default: "#fff",
+      default: "#2f3f9f",
     },
   },
 });

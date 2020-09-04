@@ -2,8 +2,6 @@ import React from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import Box from "@material-ui/core/Box";
 import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -36,7 +34,7 @@ export default function Header(props) {
         <img src="./images/4cars.png" alt="logo" className={classes.logo} />
 
         <Button
-          color="inherit"
+          color="background"
           showCar={props.showCar}
           onClick={props.changeCar}
         >
