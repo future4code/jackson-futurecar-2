@@ -114,6 +114,33 @@ export default class App extends Component {
     this.setState({ showCar: !this.state.showCar });
   };
 
+  changeSelect = (event) => {
+    
+    const noOrder = this.carArray
+    let newValue = event.target.value;
+
+    switch(newValue){
+      case "ordemTitulo":
+        const ordemTitulo = this.state.carArray.sort((a,b) => {
+	
+          return (a.name > b.nome) ? 1 : ((b.name > a.name) ? -1 : 0);
+         
+        })
+        this.setState({carArray : ordemTitulo})
+        console.log(this.state.carArray)
+        break
+      case "crescente":
+        const ordemCrescente = this.state.carArray.sort((a,b) => a.price - b.price)
+        this.setState({carArray : ordemCrescente})
+        break
+      case "decrescente":
+        const ordemDecrescente = this.state.carArray.sort((a,b) => b.price - a.price)
+        this.setState({carArray : ordemDecrescente})
+        break   
+      default: this.setState({carArray : noOrder})
+    }
+  }
+
   render() {
     const carList = this.state.carArray
       .filter((item) => {
@@ -162,11 +189,11 @@ export default class App extends Component {
                   </ContainerValor>
                 </div>
 
-                <Select>
+                <Select onChange={this.changeSelect}>
                   <option>Ordenar por</option>
-                  <option>Título</option>
-                  <option>Valor da venda</option>
-                  <option>Prazo de entrega</option>
+                  <option  value="ordemTitulo">Título</option>
+                  <option  value="crescente" >Preço crescente</option>
+                  <option value="decrescente" >Preço decrescente</option>
                 </Select>
               </>
             )}
